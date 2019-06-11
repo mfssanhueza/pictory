@@ -1,0 +1,17 @@
+<% @user_histories.each do |h| %>
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail">
+    <%= link_to(image_tag(h.picture.thumb), h) if h.picture? %>
+    <div class="caption">
+      <h3><%= h.title %></h3>
+      <small><%= time_ago_in_words(h.created_at) %> ago</small>
+      <p><%= h.content.truncate(150)  %></p>
+      <% if user_signed_in? %>
+        <p><%= link_to 'Show', h, class: "btn btn-primary" %> <%= link_to 'Edit', edit_history_path(h), class: "btn btn-warning" %> <%= link_to 'Destroy', h, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
+      <% else %>
+        <p><%= link_to 'Show', h, class: "btn btn-primary" %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

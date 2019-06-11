@@ -16,7 +16,11 @@
           <h3><%= history.title %></h3>
           <small><%= time_ago_in_words(history.created_at) %> ago</small>
           <p><%= history.content.truncate(150)  %></p>
-          <p><%= link_to 'Show', history, class: "btn btn-primary" %> <%= link_to 'Edit', edit_history_path(history), class: "btn btn-warning" %> <%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
+          <% if user_signed_in? %>
+            <p><%= link_to 'Show', history, class: "btn btn-primary" %> <%= link_to 'Edit', edit_history_path(history), class: "btn btn-warning" %> <%= link_to 'Destroy', history, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></p>
+          <% else %>
+            <p><%= link_to 'Show', history, class: "btn btn-primary" %></p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -25,5 +29,3 @@
 
 
 <br>
-
-
